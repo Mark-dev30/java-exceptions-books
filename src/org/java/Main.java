@@ -2,7 +2,6 @@ package org.java;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 import org.java.object.Book;
@@ -11,45 +10,57 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		System.out.println("Inserisci quanti libri vuoi inserire");
+		System.out.println("Quanti libri vuoi inserire");
 		Scanner in = new Scanner(System.in);
 		int n_books = in.nextInt();
 		Book[] books = new Book[n_books];
+		in.nextLine();
+		
 		for(int i=0; i<books.length; i++) {
+			
+			
+				
+			System.out.println("Inserisci titolo");
+			String title = in.nextLine();
+			System.out.println("Inserisci numero pagine");
+			int pages = in.nextInt();
+			in.nextLine();
+			System.out.println("Inserisci autore");
+			String author = in.nextLine();
+			System.out.println("Inserisci editore");
+			String editor = in.nextLine();
 			try {
-				System.out.println("Inserisci titolo");
-				String title = in.next();
-				System.out.println("Inserisci numero pagine");
-				int pages = in.nextInt();
-				System.out.println("Inserisci autore");
-				String author = in.next();
-				System.out.println("Inserisci editore");
-				String editor = in.next();
 				books[i]  = new Book(title,pages,author,editor);
 				System.out.println("-------------------");
 					
 			}
 			catch(Exception e) {
+				i--;
 				System.err.println(
 					"Errore nella creazione del libro" 
 					+ "\n" 
 					+ e.getMessage());
 			}
 		}
+		in.close();
 		printBooksToFile(books);
 		viewFile();
+		
 		
 	}
 	public static void printBooksToFile(Book[] books) {
 		try {
 			FileWriter myFile = new FileWriter("C:/progetti_java/tmp/file.txt");
 			for(int j=0; j<books.length; j++) {
-			myFile.write(books[j].getFullInfoBook() + "\n");
+			myFile.write(books[j] + "\n");
 			}
 			myFile.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			
-			e.printStackTrace();
+			System.err.println(
+					"Errore nella scrittura del file" 
+					+ "\n" 
+					+ e.getMessage());
 		}
 		
 		

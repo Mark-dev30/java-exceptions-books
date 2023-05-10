@@ -28,7 +28,7 @@ public class Book {
 	public void setPages(int pages) throws Exception {
 		
 		
-		if (pages == 0) {
+		if (pages <= 0) {
 			
 			throw new Exception("Devi insere almeno una pagina");
 			
@@ -54,17 +54,13 @@ public class Book {
 		this.editor = editor;
 	}
 	
-	public String getFullInfoBook() {
-		
-		return getTitle() + "-" + getPages() + "-" + getAuthor() + "-" + getEditor() ;
-	}
 	@Override
 	public String toString() {
 		
 		return "Titolo: " + title
-				+"\nNumero Pagine: " + pages
-				+"\nAutore: " + author
-				+"\nEditore: " + editor;
+				+" - Numero Pagine: " + pages
+				+" - Autore: " + author
+				+" - Editore: " + editor;
 	}
 	
 }
